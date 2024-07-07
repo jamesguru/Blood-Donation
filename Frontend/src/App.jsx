@@ -1,3 +1,4 @@
+import Contact from "./components/Contact";
 import Featured from "./components/Featured";
 import Footer from "./components/Footer";
 import Hero from "./components/Hero";
@@ -9,6 +10,7 @@ function App() {
       <Navbar />
       <Hero />
       <Featured />
+      <Contact />
       <Footer />
     </div>
   );
