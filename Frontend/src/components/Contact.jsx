@@ -2,6 +2,7 @@ const Contact = () => {
   return (
     <div className="flex items-center justify-center  h-[100vh]">
       <div className="flex flex-col bg-gray-100 w-[50%] h-[500px] p-[50px]">
+        <span className="text-[20px] my-[20px]">Do you want to donate blood? Leave us a message.</span>
         <label htmlFor="" className="text-[18px] mt-[10px]">
           First Name
         </label>

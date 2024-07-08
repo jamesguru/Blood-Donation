@@ -1,10 +1,10 @@
 const Featured = () => {
   return (
     <div className="flex px-[200px] mt-[100px]">
-      <div className="bg-gray-100 h-[400px] w-[500px] z-10 mt-[20px] ">
+      <div className="bg-gray-200 h-[400px] w-[500px] z-10 mt-[20px] ">
         <div className="m-10">
           <h3 className="text-[25px]">Who We Are?</h3>
-          <hr className="bg-red-500 w-[100px] h-[3px] my-[5px]" />
+          <hr className="bg-red-500 w-[100px] h-[3px] my-[20px]" />
           <span className="mt-[20px]">
             BloodBridge is for public donation center with blood donation
             members in the changing health care system.
