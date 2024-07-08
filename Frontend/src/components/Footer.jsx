@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 const Footer = () => {
   return (
-    <div className="bg-gray-100 px-[200px] h-[50vh] mt-[50px]">
+    <div className="bg-gray-100 px-[200px] h-[60vh] mt-[50px]">
       <div className="flex justify-between py-[5%]">
         <div>
           <img src="/logo1.png" alt="" height={200} width={200} />

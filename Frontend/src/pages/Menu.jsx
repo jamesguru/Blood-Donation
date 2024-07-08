@@ -24,7 +24,7 @@ const Menu = () => {
   };
 
   return (
-    <div className=" h-auto p-[20px] w-[350px] shadow-xl">
+    <div className=" h-auto p-[20px] w-[350px] shadow-lg">
       <ul className="flex flex-col items-start justify-start mt-[20px] pl-[20px]">
         <Link to="/admin" onClick={() => handleLinkClick("/admin")}>
           <li
@@ -83,7 +83,7 @@ const Menu = () => {
             }`}
           >
             <FaUsers className="mr-[15px] text-red-500" />
-            Users
+            Prospects
           </li>
         </Link>
         <Link to="/orders" onClick={() => handleLinkClick("/orders")}>
