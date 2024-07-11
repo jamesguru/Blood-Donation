@@ -1,14 +1,14 @@
 import { FaTrash } from "react-icons/fa";
 import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
-
-const Donors = () => {
+const Prospects = () => {
   const columns = [
     { field: "id", headerName: "ID", width: 90 },
     { field: "name", headerName: "Name", width: 150 },
     { field: "address", headerName: "Address", width: 150 },
     { field: "bloodType", headerName: "BloodType", width: 130 },
     { field: "disease", headerName: "Disease", width: 150 },
+
     {
       field: "edit",
       headerName: "Edit",
@@ -16,9 +16,9 @@ const Donors = () => {
       renderCell: () => {
         return (
           <>
-            <Link to={`/admin/donor/13`}>
+            <Link to={`/admin/prospect/123`}>
               <button className="bg-gray-400 text-white cursor-pointer w-[70px]">
-                Edit
+                Approve
               </button>
             </Link>
           </>
@@ -45,21 +45,21 @@ const Donors = () => {
       name: "John Doe",
       address: "123 Main St, Anytown, USA",
       bloodType: "A+",
-      disease: "Diabetes",
+      disease: "None",
     },
     {
       id: 2,
       name: "Jane Smith",
       address: "456 Oak St, Somecity, USA",
       bloodType: "B+",
-      disease: "Hypertension",
+      disease: "None",
     },
     {
       id: 3,
       name: "Tom Johnson",
       address: "789 Pine St, Othercity, USA",
       bloodType: "O-",
-      disease: "Asthma",
+      disease: "None",
     },
     {
       id: 4,
@@ -73,14 +73,14 @@ const Donors = () => {
       name: "Michael Brown",
       address: "654 Elm St, Anycity, USA",
       bloodType: "A-",
-      disease: "Heart Disease",
+      disease: "None",
     },
     {
       id: 6,
       name: "Sarah Wilson",
       address: "987 Cedar St, Thistown, USA",
       bloodType: "B-",
-      disease: "Diabetes",
+      disease: "None",
     },
     {
       id: 7,
@@ -94,42 +94,33 @@ const Donors = () => {
       name: "Laura White",
       address: "852 Birch St, Someothertown, USA",
       bloodType: "AB-",
-      disease: "Hypertension",
+      disease: "None",
     },
     {
       id: 9,
       name: "Chris Harris",
       address: "963 Walnut St, Yourcity, USA",
       bloodType: "A+",
-      disease: "Asthma",
+      disease: "None",
     },
     {
       id: 10,
       name: "Patricia Clark",
       address: "159 Chestnut St, Mytown, USA",
       bloodType: "O-",
-      disease: "Heart Disease",
+      disease: "None",
     },
   ];
-
   return (
     <div className="w-[70vw]">
       <div className="flex items-center justify-between m-[30px]">
-        <h1 className="m-[20px] text-[20px]">All Donors</h1>
-
-        <Link to="/admin/newdonor">
-          <button className="bg-[#1e1e1e] text-white p-[10px] cursor-pointer">
-            New Donor
-          </button>
-        </Link>
+        <h1 className="m-[20px] text-[20px]">All Prospects</h1>
       </div>
       <div className="mx-[30px]">
-        <DataGrid columns={columns}
-        checkboxSelection
-        rows={rows} />;
+        <DataGrid columns={columns} checkboxSelection rows={rows} />;
       </div>
     </div>
   );
 };
 
-export default Donors;
+export default Prospects;

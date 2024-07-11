@@ -65,16 +65,17 @@ const Admin = () => {
               data: [
                 { id: 0, value: 10, label: "Blood Group A" },
                 { id: 1, value: 15, label: "Blood Group O+" },
-                { id: 2, value: 20, label: "Blood Group AB" },
-                { id: 2, value: 30, label: "Blood Group O-" },
+                { id: 3, value: 20, label: "Blood Group AB" },
+                { id: 4, value: 30, label: "Blood Group O-" },
+               
               ],
-              innerRadius: 30,
-              outerRadius: 100,
+              innerRadius: 50,
+              outerRadius: 70,
               paddingAngle: 7,
               cornerRadius: 5,
               startAngle: -90,
               endAngle: 180,
-              cx: 100,
+              cx: 150,
               cy: 100,
             },
           ]}

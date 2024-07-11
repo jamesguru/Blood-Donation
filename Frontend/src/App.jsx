@@ -4,6 +4,10 @@ import Admin from "./pages/Admin";
 import Login from "./pages/Login";
 import Menu from "./pages/Menu";
 import Donors from "./pages/Donors";
+import Prospects from "./pages/Prospects"
+import NewDonor from "./pages/NewDonor";
+import Donor from "./pages/Donor";
+import Prospect from "./pages/Prospect";
 function App() {
 
   const Layout = () =>{
@@ -32,7 +36,25 @@ function App() {
         {
           path:"/admin/donors",
           element:<Donors />
-        }
+        },
+        {
+          path:"/admin/prospects",
+          element:<Prospects />
+        },
+        {
+          path:"/admin/newdonor",
+          element:<NewDonor />
+        },
+        {
+          path:"/admin/donor/:id",
+          element:<Donor />
+        },
+
+        {
+          path:"/admin/prospect/:id",
+          element:<Prospect />
+        },
+        
         
       ]
     },

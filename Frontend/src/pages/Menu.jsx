@@ -24,7 +24,7 @@ const Menu = () => {
   };
 
   return (
-    <div className=" h-auto p-[20px] w-[350px] shadow-lg">
+    <div className=" h-auto bg-gray-100 p-[20px] w-[350px] shadow-lg">
       <ul className="flex flex-col items-start justify-start mt-[20px] pl-[20px]">
         <Link to="/admin" onClick={() => handleLinkClick("/admin")}>
           <li
@@ -74,15 +74,22 @@ const Menu = () => {
             Donors
           </li>
         </Link>
-        <Link to="/users" onClick={() => handleLinkClick("/users")}>
+        <Link
+          to="/admin/prospects"
+          onClick={() => handleLinkClick("/admin/prospects")}
+        >
           <li
-            className={`flex items-center text-gray-800 text-[20px] hover:text-yellow-400 cursor-pointer mt-[20px] transition-colors duration-300 ${
-              activeLink === "/users"
-                ? "bg-red-400 p-[10px] w-[200px] text-white"
+            className={`flex items-center  text-[20px]  cursor-pointer mt-[20px] transition-colors duration-300 ${
+              activeLink === "/admin/prospects"
+                ? "bg-red-300 p-[10px] w-[200px] text-white"
                 : ""
             }`}
           >
-            <FaUsers className="mr-[15px] text-red-500" />
+            <FaUsers
+              className={`mr-[15px] ${
+                activeLink === "/admin/prospects" ? "text-white" : "text-red-500"
+              } `}
+            />
             Prospects
           </li>
         </Link>
