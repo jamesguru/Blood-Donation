@@ -32,6 +32,15 @@ const NewDonor = () => {
             />
           </div>
           <div className="flex flex-col my-[20px]">
+            <label htmlFor="">Blood Pressure</label>
+            <input
+              type="number"
+              name="bloodpressure"
+              placeholder="120"
+              className="border-2 border-[#555] border-solid p-[10px] w-[300px]"
+            />
+          </div>
+          <div className="flex flex-col my-[20px]">
             <label htmlFor="">Blood Group</label>
             <input
               type="text"
@@ -40,6 +49,7 @@ const NewDonor = () => {
               className="border-2 border-[#555] border-solid p-[10px] w-[300px]"
             />
           </div>
+          
           <div className="flex flex-col my-[20px]">
             <label htmlFor="">Email</label>
             <input
@@ -72,6 +82,16 @@ const NewDonor = () => {
               className="border-2 border-[#555] border-solid p-[10px] w-[300px]"
             />
           </div>
+          <div className="flex flex-col my-[20px]">
+            <label htmlFor="">Age</label>
+            <input
+              type="number"
+              name="age"
+              placeholder="30 years"
+              className="border-2 border-[#555] border-solid p-[10px] w-[300px]"
+            />
+          </div>
+          
           <div className="flex flex-col my-[20px]">
             <label htmlFor="">Diseases</label>
             <textarea
