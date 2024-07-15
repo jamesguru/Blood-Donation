@@ -28,7 +28,6 @@ const Admin = () => {
                  100
                 </h2>
               </div>
-
               <h2 className="flex items-center font-semibold justify-center text-[18px] m-[50px]">Donors</h2>
             </div>
           </div>
@@ -67,7 +66,6 @@ const Admin = () => {
                 { id: 1, value: 15, label: "Blood Group O+" },
                 { id: 3, value: 20, label: "Blood Group AB" },
                 { id: 4, value: 30, label: "Blood Group O-" },
-               
               ],
               innerRadius: 50,
               outerRadius: 70,

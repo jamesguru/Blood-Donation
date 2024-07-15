@@ -1,4 +1,26 @@
+import { useState } from "react";
+import { publicRequest } from "../requestMethods";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const NewDonor = () => {
+  const [inputs, setInputs] = useState({});
+
+  const handleChange = (e) => {
+    setInputs((prev) => {
+      return { ...prev, [e.target.name]: e.target.value };
+    });
+  };
+
+  const handleAddDonors = async () => {
+    try {
+      await publicRequest.post("/donors", inputs);
+      setInputs({});
+      toast.success("Donor has been successfully saved to the database.")
+    } catch (error) {
+      toast.warning("Make sure you have fill all fields");
+    }
+  };
   return (
     <div className="m-[30px] bg-[#fff] p-[20px]">
       <h2 className="font-semibold">New Donor</h2>
@@ -9,7 +31,9 @@ const NewDonor = () => {
             <input
               type="text"
               name="name"
+              value={inputs.name || ""}
               placeholder="James Kruger"
+              onChange={handleChange}
               className="border-2 border-[#555] border-solid p-[10px] w-[300px]"
             />
           </div>
@@ -19,6 +43,8 @@ const NewDonor = () => {
               type="text"
               name="address"
               placeholder="Michigan, USA"
+              value={inputs.address || ""}
+              onChange={handleChange}
               className="border-2 border-[#555] border-solid p-[10px] w-[300px]"
             />
           </div>
@@ -26,7 +52,9 @@ const NewDonor = () => {
             <label htmlFor="">Tel</label>
             <input
               type="text"
-              name="address"
+              name="tel"
+              value={inputs.tel || ""}
+              onChange={handleChange}
               placeholder="+123 568 908"
               className="border-2 border-[#555] border-solid p-[10px] w-[300px]"
             />
@@ -37,6 +65,8 @@ const NewDonor = () => {
               type="number"
               name="bloodpressure"
               placeholder="120"
+              value={inputs.bloodpressure || ""}
+              onChange={handleChange}
               className="border-2 border-[#555] border-solid p-[10px] w-[300px]"
             />
           </div>
@@ -44,7 +74,9 @@ const NewDonor = () => {
             <label htmlFor="">Blood Group</label>
             <input
               type="text"
-              name="bloodtype"
+              name="bloodgroup"
+              value={inputs.bloodgroup || ""}
+              onChange={handleChange}
               placeholder="AB+"
               className="border-2 border-[#555] border-solid p-[10px] w-[300px]"
             />
@@ -55,6 +87,8 @@ const NewDonor = () => {
             <input
               type="text"
               name="email"
+              value={inputs.email || ""}
+              onChange={handleChange}
               placeholder="jameskruger@gmail.com"
               className="border-2 border-[#555] border-solid p-[10px] w-[300px]"
             />
@@ -68,6 +102,8 @@ const NewDonor = () => {
             <input
               type="Number"
               name="weight"
+              value={inputs.weight || ""}
+              onChange={handleChange}
               placeholder="200 pounds"
               className="border-2 border-[#555] border-solid p-[10px] w-[300px]"
             />
@@ -78,7 +114,9 @@ const NewDonor = () => {
             <input
               type="date"
               name="date"
+              value={inputs.date || ""}
               placeholder="20/06/2024"
+              onChange={handleChange}
               className="border-2 border-[#555] border-solid p-[10px] w-[300px]"
             />
           </div>
@@ -87,6 +125,8 @@ const NewDonor = () => {
             <input
               type="number"
               name="age"
+              value={inputs.age || ""}
+              onChange={handleChange}
               placeholder="30 years"
               className="border-2 border-[#555] border-solid p-[10px] w-[300px]"
             />
@@ -96,14 +136,17 @@ const NewDonor = () => {
             <label htmlFor="">Diseases</label>
             <textarea
               type="text"
-              name="disease"
+              name="diseases"
+              value={inputs.diseases || ""}
+              onChange={handleChange}
               placeholder="Hypertension"
               className="border-2 border-[#555] border-solid p-[10px] w-[300px]"
             />
           </div>
-          <button className="bg-[#1e1e1e] cursor-pointer text-white p-[10px] w-[300px]">
+          <button className="bg-[#1e1e1e] cursor-pointer text-white p-[10px] w-[300px]" onClick={handleAddDonors}>
             Create
           </button>
+          <ToastContainer />
         </div>
       </div>
     </div>

@@ -26,7 +26,11 @@ const getAllDonors = async (req, res) => {
 
 const updateDonor = async (req, res) => {
     try {
-      const donor = await Donor.findById(req.params.id);
+      const donor = await Donor.findByIdAndUpdate(
+        req.params.id,
+        { $set: req.body },
+        { new: true }
+      );
       res.status(201).json(donor);
     } catch (error) {
       res.status(500).json(error);
