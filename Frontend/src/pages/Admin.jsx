@@ -1,34 +1,76 @@
 import { PieChart } from "@mui/x-charts/PieChart";
 import { LineChart } from "@mui/x-charts/LineChart";
 import { Gauge } from "@mui/x-charts/Gauge";
+import { FaUser } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logOut } from "../redux/userRedux";
+import { useEffect, useState } from "react";
+import { publicRequest } from "../requestMethods";
 
 const Admin = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [stats, setStats] = useState([]);
+  const [bloodGroupData, setBloodGroupData] = useState([]);
+
+  useEffect(() => {
+    const getStats = async () => {
+      try {
+        const res = await publicRequest.get("/donors/stats");
+        setStats(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    const getBloodGroupStats = async () => {
+      try {
+        const transformedData = stats.map((item, index) => ({
+          id: index,
+          value: item.count,
+          label: `Blood Group ${item._id}`,
+        }));
+        setBloodGroupData(transformedData);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getStats();
+    getBloodGroupStats();
+  }, []);
+
+  const handleLogout = () => {
+    dispatch(logOut());
+    navigate("/login");
+  };
+
   return (
     <div className="flex  justify-between h-[100vh]">
       <div className="flex flex-col">
         <div className="flex flex-wrap">
           <div className="bg-gray-50 h-[300px] m-[30px] w-[350px] shadow-md">
-           <div className="h-[200px] w-[200px]">
-           <Gauge
-              value={75}
-              startAngle={0}
-              endAngle={360}
-              innerRadius="80%"
-              outerRadius="100%"
-            />
+            <div className="h-[200px] w-[200px]">
+              <Gauge
+                value={75}
+                startAngle={0}
+                endAngle={360}
+                innerRadius="80%"
+                outerRadius="100%"
+              />
             </div>
             <h2 className="font-semibold text-[18px] m-[20px]">Prospects.</h2>
-           
           </div>
 
           <div className="bg-gray-50 h-[300px] m-[30px] w-[350px] shadow-md">
             <div className="h-[200px] w-[200px]  m-[30px] border-[20px] border-red-400 border-solid rounded-full">
               <div className="flex items-center justify-center m-[30px]">
-                <h2 className="font-bold text-[25px] m-[40px]">
-                 100
-                </h2>
+                <h2 className="font-bold text-[25px] m-[40px]">100</h2>
               </div>
-              <h2 className="flex items-center font-semibold justify-center text-[18px] m-[50px]">Donors</h2>
+              <h2 className="flex items-center font-semibold justify-center text-[18px] m-[50px]">
+                Donors
+              </h2>
             </div>
           </div>
         </div>
@@ -49,6 +91,12 @@ const Admin = () => {
       </div>
 
       <div className="flex flex-col bg-gray-100 m-[20px] h-[700px] w-[300px] shadow-xl">
+        <div className="flex items-center p-[10px]">
+          <FaUser className="mr-3" />
+          <span className="cursor-pointer font-semibold" onClick={handleLogout}>
+            Logout
+          </span>
+        </div>
         <div className="m-[40px]">
           <h3 className="font-semibold">Recent Donors</h3>
           <ul>
@@ -61,12 +109,7 @@ const Admin = () => {
         <PieChart
           series={[
             {
-              data: [
-                { id: 0, value: 10, label: "Blood Group A" },
-                { id: 1, value: 15, label: "Blood Group O+" },
-                { id: 3, value: 20, label: "Blood Group AB" },
-                { id: 4, value: 30, label: "Blood Group O-" },
-              ],
+              data: bloodGroupData,
               innerRadius: 50,
               outerRadius: 70,
               paddingAngle: 7,

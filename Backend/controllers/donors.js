@@ -61,6 +61,21 @@ const deleteDonor = async (req, res) => {
     }
   };
 
+  const getBloodGroupStatistics = async (req, res) => {
+    try {
+      const statistics = await Donor.aggregate([
+        {
+          $group: {
+            _id: "$bloodgroup",
+            count: { $sum: 1 }
+          }
+        }
+      ]);
+      res.status(200).json(statistics);
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  };
 
   module.exports = {
     deleteDonor,
@@ -68,5 +83,6 @@ const deleteDonor = async (req, res) => {
     updateDonor,
     getAllDonors,
     createDonor,
+    getBloodGroupStatistics
   };
   

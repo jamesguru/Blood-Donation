@@ -22,6 +22,7 @@ const sendElibilityEmail = async () => {
 
           try {
             sendMail(messageoption);
+            await Prospect.findByIdAndUpdate(prospect._id, { $set: { status: 1 }})
             await Prospect.findByIdAndDelete(prospect._id);
           } catch (error) {
             console.log(err);

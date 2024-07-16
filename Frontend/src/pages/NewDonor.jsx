@@ -16,7 +16,7 @@ const NewDonor = () => {
     try {
       await publicRequest.post("/donors", inputs);
       setInputs({});
-      toast.success("Donor has been successfully saved to the database.")
+      toast.success("Donor has been successfully saved to the database.");
     } catch (error) {
       toast.warning("Make sure you have fill all fields");
     }
@@ -72,16 +72,25 @@ const NewDonor = () => {
           </div>
           <div className="flex flex-col my-[20px]">
             <label htmlFor="">Blood Group</label>
-            <input
-              type="text"
+            <select
+              id="bloodGroup"
               name="bloodgroup"
               value={inputs.bloodgroup || ""}
-              onChange={handleChange}
-              placeholder="AB+"
               className="border-2 border-[#555] border-solid p-[10px] w-[300px]"
-            />
+              onChange={handleChange}
+            >
+              <option value="">Select Blood Group</option>
+              <option value="A+">A+</option>
+              <option value="A-">A-</option>
+              <option value="B+">B+</option>
+              <option value="B-">B-</option>
+              <option value="AB+">AB+</option>
+              <option value="AB-">AB-</option>
+              <option value="O+">O+</option>
+              <option value="O-">O-</option>
+            </select>
           </div>
-          
+
           <div className="flex flex-col my-[20px]">
             <label htmlFor="">Email</label>
             <input
@@ -93,8 +102,6 @@ const NewDonor = () => {
               className="border-2 border-[#555] border-solid p-[10px] w-[300px]"
             />
           </div>
-
-          
         </div>
         <div className="m-[20px]">
           <div className="flex flex-col my-[20px]">
@@ -104,11 +111,11 @@ const NewDonor = () => {
               name="weight"
               value={inputs.weight || ""}
               onChange={handleChange}
-              placeholder="200 pounds"
+              placeholder="60 kg"
               className="border-2 border-[#555] border-solid p-[10px] w-[300px]"
             />
           </div>
-          
+
           <div className="flex flex-col my-[20px]">
             <label htmlFor="">Date</label>
             <input
@@ -131,7 +138,7 @@ const NewDonor = () => {
               className="border-2 border-[#555] border-solid p-[10px] w-[300px]"
             />
           </div>
-          
+
           <div className="flex flex-col my-[20px]">
             <label htmlFor="">Diseases</label>
             <textarea
@@ -143,7 +150,10 @@ const NewDonor = () => {
               className="border-2 border-[#555] border-solid p-[10px] w-[300px]"
             />
           </div>
-          <button className="bg-[#1e1e1e] cursor-pointer text-white p-[10px] w-[300px]" onClick={handleAddDonors}>
+          <button
+            className="bg-[#1e1e1e] cursor-pointer text-white p-[10px] w-[300px]"
+            onClick={handleAddDonors}
+          >
             Create
           </button>
           <ToastContainer />

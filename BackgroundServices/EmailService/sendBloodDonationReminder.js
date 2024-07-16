@@ -23,8 +23,6 @@ const sendBloodDonationReminder = async () => {
       const diffTime = Math.abs(today - donorDate);
       const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
-      console.log(today, donorDate, diffTime, diffDays);
-
       // Check if the difference is more than 60 days
       if (diffDays > 60) {
         ejs.renderFile(

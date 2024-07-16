@@ -4,7 +4,6 @@ import { useState } from "react";
 import { publicRequest } from "../requestMethods";
 
 const Contact = () => {
-
   const [inputs, setInputs] = useState({});
 
   const handleChange = (e) => {
@@ -16,20 +15,22 @@ const Contact = () => {
   const handleAddProspect = async () => {
     try {
       await publicRequest.post("/prospects", inputs);
-      toast.success("You have been successfully saved to the database.")
-     setInputs({})
+      toast.success("You have been successfully saved to the database.");
+      setInputs({});
     } catch (error) {
-      toast.warning("Make sure you have fill all fields");
+      toast.warning("Make sure you have filled all fields.");
     }
   };
-console.log(inputs)
+
+  console.log(inputs);
+
   return (
-    <div className="flex items-center justify-center  h-auto my-[100px]">
+    <div className="flex items-center justify-center h-auto my-[100px]">
       <div className="flex flex-col bg-gray-100 w-[50%] h-auto p-[50px]">
         <span className="text-[20px] my-[20px]">
           Do you want to donate blood? Fill in the information.
         </span>
-        <label htmlFor="" className="text-[18px] mt-[10px]">
+        <label htmlFor="name" className="text-[18px] mt-[10px]">
           Name
         </label>
         <input
@@ -39,22 +40,21 @@ console.log(inputs)
           className="w-[350px] p-[15px]"
           placeholder="John Doe"
           onChange={handleChange}
-          
         />
 
-        <label htmlFor="" className="text-[18px] mt-[10px]">
+        <label htmlFor="tel" className="text-[18px] mt-[10px]">
           Telephone
         </label>
         <input
-          type="String"
+          type="text"
           name="tel"
           value={inputs.tel || ""}
           className="w-[350px] p-[15px]"
           placeholder="+234 678 908"
           onChange={handleChange}
-          
         />
-        <label htmlFor="" className="text-[18px] mt-[10px]">
+
+        <label htmlFor="email" className="text-[18px] mt-[10px]">
           Email
         </label>
         <input
@@ -64,9 +64,9 @@ console.log(inputs)
           className="w-[350px] p-[15px]"
           placeholder="jamesdoe@gmail.com"
           onChange={handleChange}
-          
         />
-         <label htmlFor="" className="text-[18px] mt-[10px]">
+
+        <label htmlFor="address" className="text-[18px] mt-[10px]">
           Address
         </label>
         <input
@@ -76,58 +76,68 @@ console.log(inputs)
           className="w-[350px] p-[15px]"
           placeholder="123 Sydney AUS"
           onChange={handleChange}
-          
         />
-        <label htmlFor="" className="text-[18px] mt-[10px]">
+
+        <label htmlFor="weight" className="text-[18px] mt-[10px]">
           Weight
         </label>
         <input
-          type="Number"
+          type="number"
           name="weight"
           value={inputs.weight || ""}
           className="w-[350px] p-[15px]"
           placeholder="50kg"
           onChange={handleChange}
-          
         />
-         <label htmlFor="" className="text-[18px] mt-[10px]">
+
+        <label htmlFor="bloodGroup" className="text-[18px] mt-[10px]">
           Blood Group
         </label>
-        <input
-          type="text"
+        <select
+          id="bloodGroup"
           name="bloodgroup"
           value={inputs.bloodgroup || ""}
           className="w-[350px] p-[15px]"
-          placeholder="AB+"
           onChange={handleChange}
-      
-        />
-        <label htmlFor="" className="text-[18px] mt-[10px]">
+        >
+          <option value="">Select Blood Group</option>
+          <option value="A+">A+</option>
+          <option value="A-">A-</option>
+          <option value="B+">B+</option>
+          <option value="B-">B-</option>
+          <option value="AB+">AB+</option>
+          <option value="AB-">AB-</option>
+          <option value="O+">O+</option>
+          <option value="O-">O-</option>
+        </select>
+
+        <label htmlFor="age" className="text-[18px] mt-[10px]">
           Age
         </label>
         <input
-          type="Number"
+          type="number"
           name="age"
           value={inputs.age || ""}
           className="w-[350px] p-[15px]"
           placeholder="30 years"
           onChange={handleChange}
-          
         />
-       
-        <label htmlFor="" className="text-[18px] mt-[10px]">
+
+        <label htmlFor="diseases" className="text-[18px] mt-[10px]">
           Do you have any diseases?
         </label>
         <textarea
-          type="Number"
           name="diseases"
           value={inputs.diseases || ""}
           className="w-[350px] p-[15px]"
-          placeholder="I have a hypertension."
+          placeholder="I have hypertension."
           onChange={handleChange}
-      
         />
-        <button className="bg-red-500 p-3 mt-3 w-[350px] cursor-pointer text-white" onClick={handleAddProspect}>
+
+        <button
+          className="bg-red-500 p-3 mt-3 w-[350px] cursor-pointer text-white"
+          onClick={handleAddProspect}
+        >
           Submit
         </button>
         <ToastContainer />

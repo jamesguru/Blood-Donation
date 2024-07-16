@@ -6,6 +6,7 @@ const {
   updateDonor,
   getOneDonor,
   deleteDonor,
+  getBloodGroupStatistics,
 } = require("../controllers/donors");
 
 const {
@@ -31,5 +32,9 @@ router.get("/find/:id", getOneDonor);
 // DELETE DONOR
 
 router.delete("/:id", deleteDonor);
+
+// STATS DONOR
+
+router.get("/stats", getBloodGroupStatistics);
 
 module.exports = router;
