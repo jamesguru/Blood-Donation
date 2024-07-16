@@ -11,22 +11,14 @@ import { publicRequest } from "../requestMethods";
 const Admin = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [stats, setStats] = useState([]);
+  
   const [bloodGroupData, setBloodGroupData] = useState([]);
 
   useEffect(() => {
-    const getStats = async () => {
-      try {
-        const res = await publicRequest.get("/donors/stats");
-        setStats(res.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
     const getBloodGroupStats = async () => {
       try {
-        const transformedData = stats.map((item, index) => ({
+        const res = await publicRequest.get("/donors/stats");
+        const transformedData = res.data.map((item, index) => ({
           id: index,
           value: item.count,
           label: `Blood Group ${item._id}`,
@@ -36,8 +28,7 @@ const Admin = () => {
         console.log(error);
       }
     };
-
-    getStats();
+  
     getBloodGroupStats();
   }, []);
 
@@ -53,8 +44,8 @@ const Admin = () => {
           <div className="bg-gray-50 h-[300px] m-[30px] w-[350px] shadow-md">
             <div className="h-[200px] w-[200px]">
               <Gauge
-                value={75}
-                startAngle={0}
+                value={65}
+                startAngle={10}
                 endAngle={360}
                 innerRadius="80%"
                 outerRadius="100%"
@@ -62,7 +53,6 @@ const Admin = () => {
             </div>
             <h2 className="font-semibold text-[18px] m-[20px]">Prospects.</h2>
           </div>
-
           <div className="bg-gray-50 h-[300px] m-[30px] w-[350px] shadow-md">
             <div className="h-[200px] w-[200px]  m-[30px] border-[20px] border-red-400 border-solid rounded-full">
               <div className="flex items-center justify-center m-[30px]">
@@ -106,21 +96,24 @@ const Admin = () => {
             <li>4.Joel Lispler</li>
           </ul>
         </div>
+        {bloodGroupData.length === 0 ? <span>Loading data...</span> :
         <PieChart
-          series={[
-            {
-              data: bloodGroupData,
-              innerRadius: 50,
-              outerRadius: 70,
-              paddingAngle: 7,
-              cornerRadius: 5,
-              startAngle: -90,
-              endAngle: 180,
-              cx: 150,
-              cy: 100,
-            },
-          ]}
-        />
+        series={[
+          {
+            data: bloodGroupData,
+            innerRadius: 50,
+            outerRadius: 70,
+            paddingAngle: 7,
+            cornerRadius: 5,
+            startAngle: -90,
+            endAngle: 180,
+            cx: 150,
+            cy: 100,
+          },
+        ]}
+      />
+        
+        }
       </div>
     </div>
   );
